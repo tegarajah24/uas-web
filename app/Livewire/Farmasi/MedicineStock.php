@@ -8,9 +8,13 @@ use Livewire\Component;
 class MedicineStock extends Component
 {
     public string $name = '';
+
     public string $unit = 'tablet';
+
     public string $price = '';
+
     public string $stock = '';
+
     public ?int $editId = null;
 
     public function save()

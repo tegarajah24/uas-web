@@ -10,26 +10,37 @@ use Livewire\Component;
 class PatientRegistration extends Component
 {
     public string $searchQuery = '';
+
     public ?Patient $selectedPatient = null;
 
     public string $nik = '';
+
     public string $name = '';
+
     public string $birthDate = '';
+
     public string $gender = 'L';
+
     public string $phone = '';
+
     public string $address = '';
 
     public string $poli = '';
+
     public string $doctorId = '';
+
     public ?int $lastQueueNumber = null;
 
     public bool $showForm = false;
+
     public bool $showSuccess = false;
 
     public function searchPatient()
     {
         $query = trim($this->searchQuery);
-        if (strlen($query) < 3) return;
+        if (strlen($query) < 3) {
+            return;
+        }
 
         $patient = Patient::where('no_rm', $query)
             ->orWhere('nik', $query)
@@ -134,7 +145,7 @@ class PatientRegistration extends Component
         $last = Patient::latest('id')->value('no_rm');
         $num = $last ? (int) substr($last, -4) + 1 : 1;
 
-        return 'RM-' . now()->format('Ymd') . '-' . str_pad($num, 4, '0', STR_PAD_LEFT);
+        return 'RM-'.now()->format('Ymd').'-'.str_pad($num, 4, '0', STR_PAD_LEFT);
     }
 
     private function generateQueueNumber(string $poli): int
@@ -142,8 +153,8 @@ class PatientRegistration extends Component
         $today = now()->format('Y-m-d');
 
         return Queue::where('poli', $poli)
-                ->whereDate('created_at', $today)
-                ->max('queue_number') + 1;
+            ->whereDate('created_at', $today)
+            ->max('queue_number') + 1;
     }
 
     private function fillFromSearchQuery(string $query): void

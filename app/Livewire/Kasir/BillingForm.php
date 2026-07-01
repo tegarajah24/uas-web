@@ -4,7 +4,6 @@ namespace App\Livewire\Kasir;
 
 use App\Models\Invoice;
 use App\Models\MedicalRecord;
-use App\Models\Prescription;
 use Livewire\Component;
 
 class BillingForm extends Component
@@ -60,8 +59,13 @@ class BillingForm extends Component
     public function getQueuedRecordsProperty()
     {
         return MedicalRecord::with(['patient', 'prescriptions.items.medicine'])
-            ->whereHas('prescriptions', fn ($q) => $q->where('status', 'diserahkan'))
             ->whereDoesntHave('invoices')
+            ->where(function ($query) {
+                $query->whereHas('prescriptions', function ($q) {
+                    $q->where('status', 'diserahkan');
+                })
+                    ->orWhereDoesntHave('prescriptions');
+            })
             ->latest()
             ->get();
     }

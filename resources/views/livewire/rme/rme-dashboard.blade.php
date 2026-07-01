@@ -85,7 +85,13 @@
                     </div>
 
                     <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Resep Obat</h3>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-semibold text-gray-900">Resep Obat</h3>
+                            <button class="inline-flex items-center rounded-lg bg-amber-600 px-4 py-2 text-sm font-medium text-white hover:bg-amber-700 transition-colors"
+                                    wire:click="completeWithoutPrescription">
+                                Selesai Tanpa Resep
+                            </button>
+                        </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 items-end">
                             <div>

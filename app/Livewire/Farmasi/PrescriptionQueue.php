@@ -19,6 +19,7 @@ class PrescriptionQueue extends Component
                 $medicine = Medicine::find($item->medicine_id);
                 if ($medicine && $medicine->stock < $item->qty) {
                     $this->addError("stock_{$id}", "Stok {$medicine->name} tidak mencukupi");
+
                     return;
                 }
                 $medicine?->decrement('stock', $item->qty);

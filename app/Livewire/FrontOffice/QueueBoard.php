@@ -8,6 +8,7 @@ use Livewire\Component;
 class QueueBoard extends Component
 {
     public string $filterPoli = '';
+
     public string $filterStatus = '';
 
     protected $queryString = ['filterPoli', 'filterStatus'];

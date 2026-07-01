@@ -3,6 +3,7 @@
 namespace App\Livewire\Rme;
 
 use App\Models\MedicalRecord;
+use App\Models\Medicine;
 use App\Models\Prescription;
 use App\Models\Queue;
 use Livewire\Component;
@@ -10,14 +11,19 @@ use Livewire\Component;
 class RmeDashboard extends Component
 {
     public ?int $selectedQueueId = null;
+
     public ?int $savedMedicalRecordId = null;
 
     public string $complaint = '';
+
     public string $diagnosis = '';
+
     public string $actionCost = '0';
 
     public string $selectedMedicineId = '';
+
     public int $medicineQty = 1;
+
     public array $prescriptionItems = [];
 
     public bool $showForm = false;
@@ -69,6 +75,7 @@ class RmeDashboard extends Component
 
         if ($medicine->stock < $this->medicineQty) {
             $this->addError('medicineQty', "Stok {$medicine->name} tidak mencukupi (sisa: {$medicine->stock})");
+
             return;
         }
 
@@ -93,6 +100,7 @@ class RmeDashboard extends Component
     {
         if (empty($this->prescriptionItems)) {
             $this->addError('prescriptionItems', 'Tambahkan minimal 1 obat');
+
             return;
         }
 
@@ -111,7 +119,36 @@ class RmeDashboard extends Component
 
         Queue::where('id', $this->selectedQueueId)->update(['status' => 'done']);
 
+        $this->resetRecordForm();
+
         $this->dispatch('prescription-saved');
+    }
+
+    public function completeWithoutPrescription()
+    {
+        if (! $this->savedMedicalRecordId) {
+            $this->addError('prescriptionItems', 'Simpan pemeriksaan terlebih dahulu sebelum menyelesaikan');
+
+            return;
+        }
+
+        Queue::where('id', $this->selectedQueueId)->update(['status' => 'done']);
+
+        $this->resetRecordForm();
+
+        $this->dispatch('prescription-saved');
+    }
+
+    private function resetRecordForm()
+    {
+        $this->selectedQueueId = null;
+        $this->savedMedicalRecordId = null;
+        $this->showForm = false;
+        $this->complaint = '';
+        $this->diagnosis = '';
+        $this->actionCost = '0';
+        $this->prescriptionItems = [];
+        $this->selectedMedicineId = '';
     }
 
     public function getSelectedQueueProperty()
@@ -132,7 +169,9 @@ class RmeDashboard extends Component
 
     public function getPatientHistoryProperty()
     {
-        if (!$this->selectedQueue) return collect();
+        if (! $this->selectedQueue) {
+            return collect();
+        }
 
         return MedicalRecord::with('doctor')
             ->where('patient_id', $this->selectedQueue->patient_id)
