@@ -33,11 +33,9 @@ class PatientRegistration extends Component
 
     public string $doctorId = '';
 
-    public ?int $lastQueueNumber = null;
-
     public bool $showForm = false;
 
-    public bool $showSuccess = false;
+    public ?string $successMessage = null;
 
     public function searchPatient()
     {
@@ -48,7 +46,6 @@ class PatientRegistration extends Component
         $patient = Patient::findOrFail($id);
         $this->selectedPatient = $patient;
         $this->showForm = false;
-        $this->showSuccess = false;
         $this->poli = '';
         $this->doctorId = '';
     }
@@ -71,7 +68,6 @@ class PatientRegistration extends Component
         $this->resetForm();
         $this->showForm = true;
         $this->selectedPatient = null;
-        $this->showSuccess = false;
     }
 
     public function registerPatient()
@@ -109,10 +105,11 @@ class PatientRegistration extends Component
             'status' => 'waiting',
         ]);
 
-        $this->lastQueueNumber = $queueNumber;
-        $this->selectedPatient = $patient;
-        $this->showForm = false;
-        $this->showSuccess = true;
+        $this->successMessage = "Pendaftaran berhasil! {$patient->name} — Nomor antrian: {$queueNumber} (Poli {$this->poli})";
+        $this->resetForm();
+        $this->selectedPatient = null;
+        $this->searchQuery = '';
+        $this->dispatch('flash-success');
     }
 
     public function registerExistingPatient()
@@ -132,20 +129,10 @@ class PatientRegistration extends Component
             'status' => 'waiting',
         ]);
 
-        $this->lastQueueNumber = $queueNumber;
-        $this->showSuccess = true;
-    }
-
-    public function resetAndStart()
-    {
-        $this->resetForm();
-        $this->selectedPatient = null;
-        $this->showForm = false;
-        $this->showSuccess = false;
-        $this->searchQuery = '';
-        $this->lastQueueNumber = null;
+        $this->successMessage = "Pendaftaran berhasil! {$this->selectedPatient->name} — Nomor antrian: {$queueNumber} (Poli {$this->poli})";
         $this->poli = '';
         $this->doctorId = '';
+        $this->dispatch('flash-success');
     }
 
     private function generateNoRm(): string
