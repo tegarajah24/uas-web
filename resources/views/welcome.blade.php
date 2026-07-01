@@ -135,7 +135,10 @@
     <section class="relative min-h-screen flex items-center overflow-hidden">
         {{-- Background Layers --}}
         <div class="absolute inset-0 -z-10">
-            <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-primary-700 to-gray-900"></div>
+            <div class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                 style="background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20230626/pngtree-hospital-inpatient-room-with-bed-and-amenities-a-3d-rendering-of-image_3682438.jpg');">
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-br from-gray-900/80 via-primary-700/70 to-gray-900/80"></div>
             <div class="absolute inset-0 bg-gradient-to-t from-gray-900/60 via-transparent to-transparent"></div>
             <div class="absolute inset-0 medical-pattern opacity-20"></div>
 
@@ -330,7 +333,7 @@
 
                 <div class="relative text-center reveal" style="animation-delay: 0.1s">
                     <div class="mx-auto relative">
-                        <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-white/15 backdrop-blur-sm text-white text-xl font-bold shadow-lg ring-1 ring-white/20 transition-all duration-500 hover:bg-white/25 hover:scale-110 hover:shadow-xl">
+                        <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-white text-xl font-bold shadow-lg ring-1 ring-white/20 transition-all duration-500 hover:bg-primary-hover hover:scale-110 hover:shadow-xl">
                             1
                         </div>
                         <div class="absolute -bottom-1 -right-1 h-5 w-5 rounded-full bg-green-400 ring-2 ring-primary-700 animate-heartbeat"></div>
@@ -342,7 +345,7 @@
                 </div>
 
                 <div class="relative text-center reveal" style="animation-delay: 0.2s">
-                    <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-white/15 backdrop-blur-sm text-white text-xl font-bold shadow-lg ring-1 ring-white/20 transition-all duration-500 hover:bg-white/25 hover:scale-110 hover:shadow-xl">
+                    <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-white text-xl font-bold shadow-lg ring-1 ring-white/20 transition-all duration-500 hover:bg-primary-hover hover:scale-110 hover:shadow-xl">
                         2
                     </div>
                     <div class="mt-6 rounded-xl bg-white/10 backdrop-blur-sm p-4 ring-1 ring-white/10">
@@ -352,7 +355,7 @@
                 </div>
 
                 <div class="relative text-center reveal" style="animation-delay: 0.3s">
-                    <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-white/15 backdrop-blur-sm text-white text-xl font-bold shadow-lg ring-1 ring-white/20 transition-all duration-500 hover:bg-white/25 hover:scale-110 hover:shadow-xl">
+                    <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-white text-xl font-bold shadow-lg ring-1 ring-white/20 transition-all duration-500 hover:bg-primary-hover hover:scale-110 hover:shadow-xl">
                         3
                     </div>
                     <div class="mt-6 rounded-xl bg-white/10 backdrop-blur-sm p-4 ring-1 ring-white/10">
@@ -362,7 +365,7 @@
                 </div>
 
                 <div class="relative text-center reveal" style="animation-delay: 0.4s">
-                    <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-white/15 backdrop-blur-sm text-white text-xl font-bold shadow-lg ring-1 ring-white/20 transition-all duration-500 hover:bg-white/25 hover:scale-110 hover:shadow-xl">
+                    <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-white text-xl font-bold shadow-lg ring-1 ring-white/20 transition-all duration-500 hover:bg-primary-hover hover:scale-110 hover:shadow-xl">
                         4
                     </div>
                     <div class="mt-6 rounded-xl bg-white/10 backdrop-blur-sm p-4 ring-1 ring-white/10">

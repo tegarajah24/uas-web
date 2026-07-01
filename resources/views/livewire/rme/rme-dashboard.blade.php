@@ -54,9 +54,10 @@
     </div>
 
     @if ($showModal)
-        <div class="fixed inset-0 z-50 flex items-start justify-center gap-4 p-4 bg-black/50 overflow-y-auto"
+        <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 overflow-y-auto"
              wire:click.self="closeModal">
-            <div class="sticky top-8 w-full max-w-md rounded-xl border border-gray-200 bg-white shadow-lg">
+            <div class="flex flex-col lg:flex-row gap-4 w-full max-w-4xl items-start">
+            <div class="sticky top-8 w-full lg:w-1/2 rounded-xl border border-gray-200 bg-white shadow-lg">
                 <div class="p-5">
                     <div class="flex items-center justify-between mb-4">
                         <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider">Data Pasien</h3>
@@ -94,7 +95,7 @@
                 </div>
             </div>
 
-            <div class="sticky top-8 w-full max-w-lg rounded-xl border border-gray-200 bg-white shadow-lg">
+            <div class="sticky top-8 w-full lg:w-1/2 rounded-xl border border-gray-200 bg-white shadow-lg">
                 <div class="p-5">
                     @if ($step === 'examination')
                         <div>
@@ -200,6 +201,7 @@
                         </div>
                     @endif
                 </div>
+            </div>
             </div>
         </div>
     @endif
