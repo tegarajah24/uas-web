@@ -14,7 +14,7 @@
     </head>
     <body class="font-sans">
         <div x-data="{ sidebarOpen: false }" class="min-h-screen flex">
-            <aside class="fixed inset-y-0 left-0 z-40 w-64 flex-col bg-sidebar text-white transform transition-transform duration-200 ease-in-out lg:relative lg:translate-x-0"
+            <aside class="fixed inset-y-0 left-0 z-40 w-64 flex-col transform transition-transform duration-200 ease-in-out lg:relative lg:translate-x-0"
                    :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'">
 
                 <livewire:layout.sidebar />
