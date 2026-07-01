@@ -1,7 +1,11 @@
 <?php
 
+use App\Livewire\Farmasi\MedicineStock;
+use App\Livewire\Farmasi\PrescriptionQueue;
 use App\Livewire\FrontOffice\PatientRegistration;
 use App\Livewire\FrontOffice\QueueBoard;
+use App\Livewire\Kasir\BillingForm;
+use App\Livewire\Kasir\InvoiceList;
 use App\Livewire\Rme\RmeDashboard;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +32,22 @@ Route::middleware(['auth', 'verified', 'role:dokter'])
     ->name('rme.')
     ->group(function () {
         Route::get('/', RmeDashboard::class)->name('dashboard');
+    });
+
+Route::middleware(['auth', 'verified', 'role:farmasi'])
+    ->prefix('farmasi')
+    ->name('farmasi.')
+    ->group(function () {
+        Route::get('/prescriptions', PrescriptionQueue::class)->name('prescriptions');
+        Route::get('/stock', MedicineStock::class)->name('stock');
+    });
+
+Route::middleware(['auth', 'verified', 'role:kasir'])
+    ->prefix('kasir')
+    ->name('kasir.')
+    ->group(function () {
+        Route::get('/billing', BillingForm::class)->name('billing');
+        Route::get('/history', InvoiceList::class)->name('history');
     });
 
 require __DIR__.'/auth.php';

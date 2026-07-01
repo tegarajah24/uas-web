@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Invoice extends Model
 {
-    protected $fillable = ['patient_id', 'total', 'status', 'paid_at'];
+    protected $fillable = ['patient_id', 'medical_record_id', 'total', 'status', 'paid_at'];
 
     protected function casts(): array
     {
@@ -18,6 +18,11 @@ class Invoice extends Model
     public function patient()
     {
         return $this->belongsTo(Patient::class);
+    }
+
+    public function medicalRecord()
+    {
+        return $this->belongsTo(MedicalRecord::class);
     }
 
     public function items()

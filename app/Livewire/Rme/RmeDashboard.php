@@ -3,7 +3,6 @@
 namespace App\Livewire\Rme;
 
 use App\Models\MedicalRecord;
-use App\Models\Medicine;
 use App\Models\Prescription;
 use App\Models\Queue;
 use Livewire\Component;
@@ -108,8 +107,6 @@ class RmeDashboard extends Component
                 'qty' => $item['qty'],
                 'price' => $item['price'],
             ]);
-
-            Medicine::where('id', $item['medicine_id'])->decrement('stock', $item['qty']);
         }
 
         Queue::where('id', $this->selectedQueueId)->update(['status' => 'done']);
