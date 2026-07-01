@@ -1,21 +1,18 @@
 <x-app-layout>
     <div class="max-w-6xl mx-auto space-y-8 py-6">
         <!-- Selamat Datang Banner -->
-        <div class="relative overflow-hidden rounded-2xl bg-linear-to-r from-blue-600 to-indigo-600 p-6 text-white shadow-lg">
+        <div class="relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-6 shadow-xs">
             <div class="relative z-10 space-y-2">
-                <span class="inline-flex items-center rounded-full bg-white/20 px-3 py-1 text-xs font-semibold backdrop-blur-md">
+                <span class="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-600">
                     {{ now()->format('l, d F Y') }}
                 </span>
-                <h1 class="text-3xl font-extrabold tracking-tight">
+                <h1 class="text-3xl font-extrabold tracking-tight text-gray-900">
                     Selamat Datang, {{ auth()->user()->name }}!
                 </h1>
-                <p class="text-blue-100 max-w-xl text-sm">
-                    Anda masuk sebagai <span class="font-bold underline decoration-indigo-300 decoration-2">{{ auth()->user()->roles->first()?->name ?? 'Pengguna' }}</span>. Berikut adalah ringkasan aktivitas dan pintasan tugas Anda hari ini.
+                <p class="text-gray-500 max-w-xl text-sm">
+                    Anda masuk sebagai <span class="font-bold text-gray-700 underline decoration-gray-300 decoration-2">{{ auth()->user()->roles->first()?->name ?? 'Pengguna' }}</span>.
                 </p>
             </div>
-            <!-- Decorative background elements -->
-            <div class="absolute right-0 bottom-0 -mb-10 -mr-10 h-48 w-48 rounded-full bg-white/10 blur-xl"></div>
-            <div class="absolute right-1/4 top-0 -mt-10 h-32 w-32 rounded-full bg-white/5 blur-lg"></div>
         </div>
 
         @role('admin_resepsionis')
