@@ -156,21 +156,21 @@
 
                 {{-- Headline --}}
                 <h1 class="text-5xl font-extrabold tracking-tight text-white sm:text-6xl lg:text-7xl leading-tight">
-                    <span class="inline-block animate-slide-up" style="animation-delay: 0.1s">Kelola Rumah Sakit</span>
+                    <span class="inline-block animate-slide-up">Kelola Rumah Sakit</span>
                     <br>
-                    <span class="inline-block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-teal-200 via-white to-teal-100 animate-slide-up" style="animation-delay: 0.3s">
+                    <span class="inline-block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-teal-200 via-white to-teal-100 animate-slide-up">
                         Lebih Efisien
                     </span>
                 </h1>
 
                 {{-- Subtitle --}}
-                <p class="mt-6 text-lg leading-relaxed text-primary-100/80 sm:text-xl max-w-2xl mx-auto animate-slide-up" style="animation-delay: 0.5s">
+                <p class="mt-6 text-lg leading-relaxed text-primary-100/80 sm:text-xl max-w-2xl mx-auto animate-slide-up">
                     SIMRS menghubungkan seluruh alur kerja rumah sakit — dari pendaftaran pasien,
                     rekam medis elektronik, resep obat, hingga pembayaran — dalam satu platform terintegrasi.
                 </p>
 
                 {{-- CTA Buttons --}}
-                <div class="mt-10 flex items-center justify-center gap-4 animate-slide-up" style="animation-delay: 0.7s">
+                <div class="mt-10 flex items-center justify-center gap-4 animate-slide-up">
                     @auth
                         <a href="{{ url('/dashboard') }}"
                            class="group relative inline-flex items-center gap-2.5 rounded-xl bg-white px-8 py-4 text-sm font-semibold text-primary shadow-2xl shadow-primary/30 transition-all hover:scale-105 hover:shadow-primary/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary overflow-hidden">
@@ -192,21 +192,7 @@
                     @endauth
                 </div>
 
-                {{-- Stats Mini --}}
-                <div class="mt-16 grid grid-cols-3 gap-8 max-w-lg mx-auto border-t border-white/10 pt-10 animate-fade-in" style="animation-delay: 1s">
-                    <div class="text-center">
-                        <div class="text-2xl font-bold text-white">4</div>
-                        <div class="text-xs text-primary-200/70 mt-1">Modul Terintegrasi</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-2xl font-bold text-white">5</div>
-                        <div class="text-xs text-primary-200/70 mt-1">Role Pengguna</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-2xl font-bold text-white">1</div>
-                        <div class="text-xs text-primary-200/70 mt-1">Platform</div>
-                    </div>
-                </div>
+
             </div>
         </div>
 
@@ -425,8 +411,7 @@
                      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible') });
                  }, { threshold: 0.2 }).observe(el);
              })">
-        <div class="absolute inset-0 -z-10"
-             :style="{ transform: 'translateY(' + (scrolled * -0.05) + 'px)' }">
+        <div class="absolute inset-0 -z-10">
             <div class="absolute inset-0 bg-gradient-to-br from-primary-700 via-primary to-primary-600"></div>
             <div class="absolute inset-0 medical-pattern opacity-10"></div>
             <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] rounded-full bg-white/5 blur-[180px]"></div>
