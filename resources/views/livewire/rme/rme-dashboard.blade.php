@@ -26,12 +26,14 @@
                             </span>
                         </td>
                         <td class="px-4 py-3 text-center">
-                            <button class="relative inline-flex items-center justify-center rounded-lg bg-primary px-3 py-1.5 text-xs font-medium text-white hover:bg-primary-hover transition-colors min-w-[4rem] h-[30px]"
-                                    wire:click="selectQueue({{ $queue->id }})"
-                                    wire:loading.attr="disabled"
-                                    wire:key="select-{{ $queue->id }}">
-                                <span wire:loading.class="invisible">Lihat</span>
-                                <span wire:loading.class.remove="hidden" class="hidden absolute inset-0 flex items-center justify-center">
+                            <button x-data="{ loading: false }"
+                                    @click="loading = true; $wire.selectQueue({{ $queue->id }}).then(() => loading = false).catch(() => loading = false)"
+                                    :disabled="loading"
+                                    wire:key="select-{{ $queue->id }}"
+                                    class="relative inline-flex items-center justify-center rounded-lg bg-primary px-3 py-1.5 text-xs font-medium text-white hover:bg-primary-hover transition-colors min-w-[4rem] h-[30px]
+                                           disabled:opacity-70 disabled:cursor-wait">
+                                <span x-show="!loading">Lihat</span>
+                                <span x-show="loading" class="absolute inset-0 flex items-center justify-center">
                                     <svg class="h-3.5 w-3.5 animate-spin" fill="none" viewBox="0 0 24 24">
                                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                         <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>

@@ -322,7 +322,7 @@
 
             <div class="mt-16 grid gap-8 sm:grid-cols-4 relative">
                 {{-- Connecting Line --}}
-                <div class="absolute top-8 left-[12%] right-[12%] h-0.5 hidden sm:block">
+                <div class="absolute top-8 left-[12%] right-[12%] h-0.5 hidden sm:block -z-10">
                     <div class="h-full bg-gradient-to-r from-white/20 via-white/40 to-white/20 relative overflow-hidden">
                         <div class="absolute inset-0 bg-white/60 animate-progress" style="animation: progress-bar 3s ease-in-out infinite; width: 0%;"></div>
                     </div>
