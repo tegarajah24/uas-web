@@ -1,4 +1,4 @@
-<div class="max-w-5xl mx-auto space-y-6">
+<div class="max-w-6xl mx-auto space-y-6">
     <h2 class="text-2xl font-bold text-gray-900">Pembayaran</h2>
 
     <div class="space-y-4">

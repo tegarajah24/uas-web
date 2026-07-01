@@ -1,4 +1,4 @@
-<div class="max-w-5xl mx-auto space-y-6" wire:poll.5s>
+<div class="max-w-6xl mx-auto space-y-6" wire:poll.5s>
     <h2 class="text-2xl font-bold text-gray-900">Papan Antrian</h2>
 
     <div class="flex flex-wrap gap-3">
