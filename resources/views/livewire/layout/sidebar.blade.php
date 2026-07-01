@@ -1,91 +1,115 @@
-<div class="flex flex-col min-h-full w-64 bg-base-200 text-base-content">
-    <div class="p-4 border-b border-base-300">
-        <a href="{{ route('dashboard') }}" class="text-xl font-bold tracking-tight" wire:navigate>
+<div class="flex flex-col h-full bg-sidebar">
+    <div class="flex items-center gap-3 px-6 h-16 border-b border-white/10">
+        <a href="{{ route('dashboard') }}" wire:navigate class="text-xl font-bold text-white tracking-tight">
             SIMRS
         </a>
-        <p class="text-xs text-base-content/60 mt-1">Sistem Informasi RS</p>
+        <span class="text-xs text-sidebar-text">v1.0</span>
     </div>
 
-    <ul class="menu p-2 gap-1 flex-1">
-        <li>
-            <a href="{{ route('dashboard') }}" wire:navigate class="{{ request()->routeIs('dashboard') ? 'menu-active' : '' }}">
-                <span class="text-lg">📊</span>
-                Dashboard
-            </a>
-        </li>
+    <nav class="flex-1 overflow-y-auto px-3 py-4 space-y-1">
+        <a href="{{ route('dashboard') }}" wire:navigate
+           class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors
+                  {{ request()->routeIs('dashboard') ? 'bg-primary text-white' : 'text-sidebar-text hover:bg-sidebar-hover hover:text-white' }}">
+            <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+            Dashboard
+        </a>
 
         @auth
             @role('admin_resepsionis')
-                <li class="menu-title mt-2"><span>Front-Office</span></li>
-                <li>
-                    <a href="{{ route('front-office.register') }}" wire:navigate class="{{ request()->routeIs('front-office.register') ? 'menu-active' : '' }}">
-                        <span class="text-lg">📝</span>
-                        Pendaftaran
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('front-office.queue') }}" wire:navigate class="{{ request()->routeIs('front-office.queue') ? 'menu-active' : '' }}">
-                        <span class="text-lg">🔄</span>
-                        Antrian
-                    </a>
-                </li>
+                <div class="pt-4 pb-1">
+                    <p class="px-3 text-xs font-semibold uppercase tracking-wider text-sidebar-text">Front-Office</p>
+                </div>
+                <a href="{{ route('front-office.register') }}" wire:navigate
+                   class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors
+                          {{ request()->routeIs('front-office.register') ? 'bg-primary text-white' : 'text-sidebar-text hover:bg-sidebar-hover hover:text-white' }}">
+                    <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                    </svg>
+                    Pendaftaran
+                </a>
+                <a href="{{ route('front-office.queue') }}" wire:navigate
+                   class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors
+                          {{ request()->routeIs('front-office.queue') ? 'bg-primary text-white' : 'text-sidebar-text hover:bg-sidebar-hover hover:text-white' }}">
+                    <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                    </svg>
+                    Antrian
+                </a>
             @endrole
 
             @role('dokter')
-                <li class="menu-title mt-2"><span>RME</span></li>
-                <li>
-                    <a href="{{ route('rme.dashboard') }}" wire:navigate class="{{ request()->routeIs('rme.*') ? 'menu-active' : '' }}">
-                        <span class="text-lg">🩺</span>
-                        Pemeriksaan
-                    </a>
-                </li>
+                <div class="pt-4 pb-1">
+                    <p class="px-3 text-xs font-semibold uppercase tracking-wider text-sidebar-text">RME</p>
+                </div>
+                <a href="{{ route('rme.dashboard') }}" wire:navigate
+                   class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors
+                          {{ request()->routeIs('rme.*') ? 'bg-primary text-white' : 'text-sidebar-text hover:bg-sidebar-hover hover:text-white' }}">
+                    <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    Pemeriksaan
+                </a>
             @endrole
 
             @role('farmasi')
-                <li class="menu-title mt-2"><span>Farmasi</span></li>
-                <li>
-                    <a href="{{ route('farmasi.prescriptions') }}" wire:navigate class="{{ request()->routeIs('farmasi.prescriptions') ? 'menu-active' : '' }}">
-                        <span class="text-lg">💊</span>
-                        Resep Masuk
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('farmasi.stock') }}" wire:navigate class="{{ request()->routeIs('farmasi.stock') ? 'menu-active' : '' }}">
-                        <span class="text-lg">📦</span>
-                        Stok Obat
-                    </a>
-                </li>
+                <div class="pt-4 pb-1">
+                    <p class="px-3 text-xs font-semibold uppercase tracking-wider text-sidebar-text">Farmasi</p>
+                </div>
+                <a href="{{ route('farmasi.prescriptions') }}" wire:navigate
+                   class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors
+                          {{ request()->routeIs('farmasi.prescriptions') ? 'bg-primary text-white' : 'text-sidebar-text hover:bg-sidebar-hover hover:text-white' }}">
+                    <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                    </svg>
+                    Resep Masuk
+                </a>
+                <a href="{{ route('farmasi.stock') }}" wire:navigate
+                   class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors
+                          {{ request()->routeIs('farmasi.stock') ? 'bg-primary text-white' : 'text-sidebar-text hover:bg-sidebar-hover hover:text-white' }}">
+                    <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                    </svg>
+                    Stok Obat
+                </a>
             @endrole
 
             @role('kasir')
-                <li class="menu-title mt-2"><span>Kasir</span></li>
-                <li>
-                    <a href="{{ route('kasir.billing') }}" wire:navigate class="{{ request()->routeIs('kasir.billing') ? 'menu-active' : '' }}">
-                        <span class="text-lg">💰</span>
-                        Pembayaran
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('kasir.history') }}" wire:navigate class="{{ request()->routeIs('kasir.history') ? 'menu-active' : '' }}">
-                        <span class="text-lg">📋</span>
-                        Riwayat
-                    </a>
-                </li>
+                <div class="pt-4 pb-1">
+                    <p class="px-3 text-xs font-semibold uppercase tracking-wider text-sidebar-text">Kasir</p>
+                </div>
+                <a href="{{ route('kasir.billing') }}" wire:navigate
+                   class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors
+                          {{ request()->routeIs('kasir.billing') ? 'bg-primary text-white' : 'text-sidebar-text hover:bg-sidebar-hover hover:text-white' }}">
+                    <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Pembayaran
+                </a>
+                <a href="{{ route('kasir.history') }}" wire:navigate
+                   class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors
+                          {{ request()->routeIs('kasir.history') ? 'bg-primary text-white' : 'text-sidebar-text hover:bg-sidebar-hover hover:text-white' }}">
+                    <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    Riwayat
+                </a>
             @endrole
         @endauth
-    </ul>
+    </nav>
 
-    <div class="p-4 border-t border-base-300">
-        @auth
+    @auth
+        <div class="border-t border-white/10 px-4 py-4">
             <div class="flex items-center gap-3">
-                <div class="bg-primary text-primary-content rounded-full w-10 h-10 flex items-center justify-center font-bold">
+                <span class="inline-flex items-center justify-center h-9 w-9 rounded-full bg-primary text-white text-sm font-bold shrink-0">
                     {{ substr(auth()->user()->name, 0, 1) }}
-                </div>
-                <div class="text-sm leading-tight">
-                    <p class="font-semibold">{{ auth()->user()->name }}</p>
-                    <p class="text-xs text-base-content/60">{{ auth()->user()->roles->first()?->name ?? 'User' }}</p>
+                </span>
+                <div class="min-w-0">
+                    <p class="text-sm font-medium text-white truncate">{{ auth()->user()->name }}</p>
+                    <p class="text-xs text-sidebar-text truncate">{{ auth()->user()->roles->first()?->name ?? 'User' }}</p>
                 </div>
             </div>
-        @endauth
-    </div>
+        </div>
+    @endauth
 </div>

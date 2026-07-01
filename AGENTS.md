@@ -1,6 +1,6 @@
 # SIMRS — Agent Guide
 
-**Stack**: Laravel 13 · Livewire 3 + Volt 1.7 · Tailwind CSS 4 · daisyUI 5 · MySQL · Spatie Permission
+**Stack**: Laravel 13 · Livewire 3 + Volt 1.7 · Tailwind CSS 4 · MySQL · Spatie Permission
 
 ---
 
@@ -55,14 +55,13 @@ Use `composer run dev` not `artisan serve` alone. Tests use SQLite `:memory:`.
 - **Class Livewire components**: `app/Livewire/` (e.g. `Actions/Logout.php`, `Forms/LoginForm.php`)
 - Both mount paths are active; pick one style per component.
 
-## Tailwind 4 + daisyUI 5
+## Tailwind 4
 
 Config is in `resources/css/app.css`:
 ```css
 @import 'tailwindcss';
-@plugin 'daisyui';
 ```
-No `tailwind.config.js`. No `@tailwind` directives. Theme via `@theme {}` block. Custom "Aura" daisyUI theme declared with `data-theme="aura"` on HTML root.
+No `tailwind.config.js`. No `@tailwind` directives. Theme via `@theme {}` block. Custom medical theme (biru/putih) defined via CSS variables in `@theme {}`.
 
 ## Routing & Page Conventions
 
@@ -88,7 +87,7 @@ Alur: Pendaftaran → RME → Farmasi → Kasir. Transisi status reaktif via Liv
 
 ## Permissions
 
-Spatie `laravel-permission` 8.1 installed. `User` model does **not** use `HasRoles` trait yet — needs wiring. Roles planned: `admin_resepsionis`, `dokter`, `farmasi`, `kasir`.
+Spatie `laravel-permission` 8.1 installed. `User` model uses `HasRoles` trait. Roles: `admin_resepsionis`, `dokter`, `farmasi`, `kasir`.
 
 ## Database
 
@@ -98,9 +97,11 @@ Spatie `laravel-permission` 8.1 installed. `User` model does **not** use `HasRol
 
 ## Style
 
-- UI via daisyUI 5 components; use Blade components from `resources/views/components/`
+- UI via pure Tailwind CSS 4 utility classes (no UI framework)
+- Custom medical theme (biru/putih) defined in `resources/css/app.css` via `@theme {}`
+- Layout uses CSS flex + sidebar toggle via Alpine.js
 - Breeze auth scaffold present (login, register, password reset, profile)
 
 ## OpenCode MCP Integration
 
-- daisyUI docs and ApexCharts docs are available via MCP (configured in `.opencode/opencode.json` or `.opencode.json`). Use keyword `daisyui` and `apexcharts` when prompting for these specific components.
+- ApexCharts docs are available via MCP (configured in `.opencode/opencode.json` or `.opencode.json`). Use keyword `apexcharts` when prompting for these specific components.
