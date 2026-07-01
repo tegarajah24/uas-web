@@ -45,8 +45,7 @@
 
     @if ($showModal)
         <div class="fixed inset-0 z-50 flex items-start justify-center gap-4 p-4 bg-black/50 overflow-y-auto"
-             x-data
-             @click.self="$wire.closeModal()">
+             wire:click.self="closeModal">
             <div class="sticky top-8 w-full max-w-md rounded-xl border border-gray-200 bg-white shadow-lg">
                 <div class="p-5">
                     <div class="flex items-center justify-between mb-4">
