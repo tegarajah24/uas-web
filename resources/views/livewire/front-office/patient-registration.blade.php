@@ -106,63 +106,75 @@
         @endif
 
         @if ($showForm)
-            <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-                <h3 class="text-lg font-semibold text-gray-900 mb-4">Registrasi Pasien Baru</h3>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">NIK</label>
-                        <input type="text" class="block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm placeholder-gray-400 focus:border-primary focus:ring-1 focus:ring-primary outline-none" wire:model="nik">
-                        @error('nik') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
+            <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
+                 x-data x-show="$wire.showForm" x-cloak
+                 @click.self="$wire.resetForm()">
+                <div class="w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl border border-gray-200 bg-white p-6 shadow-lg mx-4">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold text-gray-900">Registrasi Pasien Baru</h3>
+                        <button class="inline-flex items-center justify-center h-8 w-8 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors"
+                                wire:click="resetForm">
+                            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
                     </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Nama</label>
-                        <input type="text" class="block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm placeholder-gray-400 focus:border-primary focus:ring-1 focus:ring-primary outline-none" wire:model="name">
-                        @error('name') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">NIK</label>
+                            <input type="text" class="block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm placeholder-gray-400 focus:border-primary focus:ring-1 focus:ring-primary outline-none" wire:model="nik">
+                            @error('nik') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Nama</label>
+                            <input type="text" class="block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm placeholder-gray-400 focus:border-primary focus:ring-1 focus:ring-primary outline-none" wire:model="name">
+                            @error('name') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Tanggal Lahir</label>
+                            <input type="date" class="block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm placeholder-gray-400 focus:border-primary focus:ring-1 focus:ring-primary outline-none" wire:model="birthDate">
+                            @error('birthDate') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Jenis Kelamin</label>
+                            <select class="block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none" wire:model="gender">
+                                <option value="L">Laki-laki</option>
+                                <option value="P">Perempuan</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">No. Telepon</label>
+                            <input type="text" class="block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm placeholder-gray-400 focus:border-primary focus:ring-1 focus:ring-primary outline-none" wire:model="phone">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Alamat</label>
+                            <textarea class="block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm placeholder-gray-400 focus:border-primary focus:ring-1 focus:ring-primary outline-none" wire:model="address" rows="2"></textarea>
+                        </div>
                     </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Tanggal Lahir</label>
-                        <input type="date" class="block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm placeholder-gray-400 focus:border-primary focus:ring-1 focus:ring-primary outline-none" wire:model="birthDate">
-                        @error('birthDate') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Jenis Kelamin</label>
-                        <select class="block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none" wire:model="gender">
-                            <option value="L">Laki-laki</option>
-                            <option value="P">Perempuan</option>
+
+                    <hr class="border-t border-gray-200 my-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <select class="block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none" wire:model="poli">
+                            <option value="">Pilih Poli</option>
+                            <option value="umum">Poli Umum</option>
+                            <option value="gigi">Poli Gigi</option>
+                            <option value="anak">Poli Anak</option>
+                            <option value="kandungan">Poli Kandungan</option>
+                        </select>
+                        <select class="block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none" wire:model="doctorId">
+                            <option value="">Pilih Dokter</option>
+                            @foreach ($this->doctors as $doctor)
+                                <option value="{{ $doctor->id }}">{{ $doctor->name }}</option>
+                            @endforeach
                         </select>
                     </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">No. Telepon</label>
-                        <input type="text" class="block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm placeholder-gray-400 focus:border-primary focus:ring-1 focus:ring-primary outline-none" wire:model="phone">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Alamat</label>
-                        <textarea class="block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm placeholder-gray-400 focus:border-primary focus:ring-1 focus:ring-primary outline-none" wire:model="address" rows="2"></textarea>
-                    </div>
-                </div>
+                    @error('poli') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
+                    @error('doctorId') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
 
-                <hr class="border-t border-gray-200 my-4">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <select class="block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none" wire:model="poli">
-                        <option value="">Pilih Poli</option>
-                        <option value="umum">Poli Umum</option>
-                        <option value="gigi">Poli Gigi</option>
-                        <option value="anak">Poli Anak</option>
-                        <option value="kandungan">Poli Kandungan</option>
-                    </select>
-                    <select class="block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none" wire:model="doctorId">
-                        <option value="">Pilih Dokter</option>
-                        @foreach ($this->doctors as $doctor)
-                            <option value="{{ $doctor->id }}">{{ $doctor->name }}</option>
-                        @endforeach
-                    </select>
+                    <button class="mt-4 w-full inline-flex items-center justify-center rounded-lg bg-primary px-4 py-2.5 text-sm font-medium text-white hover:bg-primary-hover transition-colors" wire:click="registerPatient">
+                        Daftarkan & Ambil Antrian
+                    </button>
                 </div>
-                @error('poli') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
-                @error('doctorId') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
-
-                <button class="mt-4 w-full inline-flex items-center justify-center rounded-lg bg-primary px-4 py-2.5 text-sm font-medium text-white hover:bg-primary-hover transition-colors" wire:click="registerPatient">
-                    Daftarkan & Ambil Antrian
-                </button>
             </div>
         @endif
     @endif

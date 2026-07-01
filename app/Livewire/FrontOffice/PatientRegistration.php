@@ -172,7 +172,7 @@ class PatientRegistration extends Component
         }
     }
 
-    private function resetForm(): void
+    public function resetForm(): void
     {
         $this->nik = '';
         $this->name = '';
@@ -180,6 +180,10 @@ class PatientRegistration extends Component
         $this->gender = 'L';
         $this->phone = '';
         $this->address = '';
+        $this->poli = '';
+        $this->doctorId = '';
+        $this->showForm = false;
+        $this->resetValidation();
     }
 
     public function getDoctorsProperty()
