@@ -67,31 +67,6 @@
                 </div>
             </div>
 
-            <!-- Quick Action Grid -->
-            <div class="space-y-4">
-                <h3 class="text-lg font-bold text-gray-900">Pintasan Menu Front-Office</h3>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <a href="{{ route('front-office.register') }}" class="group flex items-center justify-between rounded-xl border border-blue-100 bg-blue-50/50 p-5 hover:bg-blue-50 hover:border-blue-200 transition-all shadow-xs">
-                        <div class="space-y-1">
-                            <p class="font-bold text-blue-900 group-hover:text-blue-950">Daftarkan Pasien Baru</p>
-                            <p class="text-xs text-blue-700">Registrasi pasien baru atau cari pasien lama untuk mengambil nomor antrian baru</p>
-                        </div>
-                        <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-white group-hover:scale-105 transition-transform shrink-0">
-                            &rarr;
-                        </span>
-                    </a>
-
-                    <a href="{{ route('front-office.queue') }}" class="group flex items-center justify-between rounded-xl border border-indigo-100 bg-indigo-50/50 p-5 hover:bg-indigo-50 hover:border-indigo-200 transition-all shadow-xs">
-                        <div class="space-y-1">
-                            <p class="font-bold text-indigo-900 group-hover:text-indigo-950">Papan Antrian Utama</p>
-                            <p class="text-xs text-indigo-700">Pantau dan kelola seluruh antrian poli yang sedang menunggu giliran pemeriksaan</p>
-                        </div>
-                        <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600 text-white group-hover:scale-105 transition-transform shrink-0">
-                            &rarr;
-                        </span>
-                    </a>
-                </div>
-            </div>
         @endrole
 
         @role('dokter')
@@ -128,21 +103,6 @@
                 </div>
             </div>
 
-            <!-- Quick Action -->
-            <div class="space-y-4">
-                <h3 class="text-lg font-bold text-gray-900">Pintasan Menu Rekam Medis</h3>
-                <div>
-                    <a href="{{ route('rme.dashboard') }}" class="group flex items-center justify-between rounded-xl border border-blue-100 bg-blue-50/50 p-5 hover:bg-blue-50 hover:border-blue-200 transition-all shadow-xs">
-                        <div class="space-y-1">
-                            <p class="font-bold text-blue-900 group-hover:text-blue-950">Mulai Pemeriksaan (RME)</p>
-                            <p class="text-xs text-blue-700">Masuk ke ruang periksa medis elektronik Anda untuk memanggil pasien, menginput keluhan & diagnosis, dan meresepkan obat</p>
-                        </div>
-                        <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-white group-hover:scale-105 transition-transform shrink-0">
-                            &rarr;
-                        </span>
-                    </a>
-                </div>
-            </div>
         @endrole
 
         @role('farmasi')
@@ -194,31 +154,6 @@
                 </div>
             </div>
 
-            <!-- Quick Action Grid -->
-            <div class="space-y-4">
-                <h3 class="text-lg font-bold text-gray-900">Pintasan Menu Farmasi</h3>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <a href="{{ route('farmasi.prescriptions') }}" class="group flex items-center justify-between rounded-xl border border-blue-100 bg-blue-50/50 p-5 hover:bg-blue-50 hover:border-blue-200 transition-all shadow-xs">
-                        <div class="space-y-1">
-                            <p class="font-bold text-blue-900 group-hover:text-blue-950">Resep Masuk</p>
-                            <p class="text-xs text-blue-700">Daftar resep elektronik dari dokter yang siap disiapkan bahan obatnya dan diserahkan</p>
-                        </div>
-                        <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-white group-hover:scale-105 transition-transform shrink-0">
-                            &rarr;
-                        </span>
-                    </a>
-
-                    <a href="{{ route('farmasi.stock') }}" class="group flex items-center justify-between rounded-xl border border-teal-100 bg-teal-50/50 p-5 hover:bg-teal-50 hover:border-teal-200 transition-all shadow-xs">
-                        <div class="space-y-1">
-                            <p class="font-bold text-teal-900 group-hover:text-teal-950">Stok & Master Obat</p>
-                            <p class="text-xs text-teal-700">Kelola master data obat, satuan obat, harga jual obat, dan penyesuaian jumlah stok obat</p>
-                        </div>
-                        <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-teal-600 text-white group-hover:scale-105 transition-transform shrink-0">
-                            &rarr;
-                        </span>
-                    </a>
-                </div>
-            </div>
         @endrole
 
         @role('kasir')
@@ -272,31 +207,6 @@
                 </div>
             </div>
 
-            <!-- Quick Action Grid -->
-            <div class="space-y-4">
-                <h3 class="text-lg font-bold text-gray-900">Pintasan Menu Kasir</h3>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <a href="{{ route('kasir.billing') }}" class="group flex items-center justify-between rounded-xl border border-blue-100 bg-blue-50/50 p-5 hover:bg-blue-50 hover:border-blue-200 transition-all shadow-xs">
-                        <div class="space-y-1">
-                            <p class="font-bold text-blue-900 group-hover:text-blue-950">Proses Pembayaran</p>
-                            <p class="text-xs text-blue-700">Tampilkan rincian biaya tindakan & obat pasien, proses konfirmasi pembayaran tunai/non-tunai</p>
-                        </div>
-                        <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-white group-hover:scale-105 transition-transform shrink-0">
-                            &rarr;
-                        </span>
-                    </a>
-
-                    <a href="{{ route('kasir.history') }}" class="group flex items-center justify-between rounded-xl border border-teal-100 bg-teal-50/50 p-5 hover:bg-teal-50 hover:border-teal-200 transition-all shadow-xs">
-                        <div class="space-y-1">
-                            <p class="font-bold text-teal-900 group-hover:text-teal-950">Riwayat Pembayaran</p>
-                            <p class="text-xs text-teal-700">Rekap riwayat kuitansi pembayaran dan filter laporan harian berdasarkan tanggal</p>
-                        </div>
-                        <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-teal-600 text-white group-hover:scale-105 transition-transform shrink-0">
-                            &rarr;
-                        </span>
-                    </a>
-                </div>
-            </div>
         @endrole
 
         @role('super_admin')
@@ -363,91 +273,6 @@
                 </div>
             </div>
 
-            <!-- Access All Features -->
-            <div class="space-y-4">
-                <h3 class="text-lg font-bold text-gray-900">Akses Cepat Semua Modul Aplikasi</h3>
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    <a href="{{ route('admin.users') }}" class="group flex flex-col justify-between rounded-xl border border-purple-100 bg-purple-50/50 p-5 hover:bg-purple-50 hover:border-purple-200 transition-all shadow-xs">
-                        <div>
-                            <p class="font-bold text-purple-900">Kelola Pengguna</p>
-                            <p class="text-xs text-purple-700 mt-1">Manajemen akun, tambah, edit peran, dan hapus user.</p>
-                        </div>
-                        <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-purple-600 text-white mt-4 self-end group-hover:scale-105 transition-transform shrink-0">
-                            &rarr;
-                        </span>
-                    </a>
-
-                    <a href="{{ route('front-office.register') }}" class="group flex flex-col justify-between rounded-xl border border-blue-100 bg-blue-50/50 p-5 hover:bg-blue-50 hover:border-blue-200 transition-all shadow-xs">
-                        <div>
-                            <p class="font-bold text-blue-900">Registrasi Pasien</p>
-                            <p class="text-xs text-blue-700 mt-1">Pendaftaran pasien baru/lama & pengambilan antrian poli.</p>
-                        </div>
-                        <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-white mt-4 self-end group-hover:scale-105 transition-transform shrink-0">
-                            &rarr;
-                        </span>
-                    </a>
-
-                    <a href="{{ route('front-office.queue') }}" class="group flex flex-col justify-between rounded-xl border border-indigo-100 bg-indigo-50/50 p-5 hover:bg-indigo-50 hover:border-indigo-200 transition-all shadow-xs">
-                        <div>
-                            <p class="font-bold text-indigo-900">Antrian Poli</p>
-                            <p class="text-xs text-indigo-700 mt-1">Monitoring & pemanggilan pasien harian per poli.</p>
-                        </div>
-                        <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600 text-white mt-4 self-end group-hover:scale-105 transition-transform shrink-0">
-                            &rarr;
-                        </span>
-                    </a>
-
-                    <a href="{{ route('rme.dashboard') }}" class="group flex flex-col justify-between rounded-xl border border-emerald-100 bg-emerald-50/50 p-5 hover:bg-emerald-50 hover:border-emerald-200 transition-all shadow-xs">
-                        <div>
-                            <p class="font-bold text-emerald-900">Pemeriksaan Dokter (RME)</p>
-                            <p class="text-xs text-emerald-700 mt-1">Rekam Medis Elektronik, diagnosis, keluhan, & e-resep.</p>
-                        </div>
-                        <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-600 text-white mt-4 self-end group-hover:scale-105 transition-transform shrink-0">
-                            &rarr;
-                        </span>
-                    </a>
-
-                    <a href="{{ route('farmasi.prescriptions') }}" class="group flex flex-col justify-between rounded-xl border border-teal-100 bg-teal-50/50 p-5 hover:bg-teal-50 hover:border-teal-200 transition-all shadow-xs">
-                        <div>
-                            <p class="font-bold text-teal-900">Farmasi - Resep</p>
-                            <p class="text-xs text-teal-700 mt-1">Antrian e-resep dokter, penyiapan & penyerahan obat.</p>
-                        </div>
-                        <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-teal-600 text-white mt-4 self-end group-hover:scale-105 transition-transform shrink-0">
-                            &rarr;
-                        </span>
-                    </a>
-
-                    <a href="{{ route('farmasi.stock') }}" class="group flex flex-col justify-between rounded-xl border border-teal-100 bg-teal-50/50 p-5 hover:bg-teal-50 hover:border-teal-200 transition-all shadow-xs">
-                        <div>
-                            <p class="font-bold text-teal-900">Farmasi - Stok Obat</p>
-                            <p class="text-xs text-teal-700 mt-1">Manajemen master data obat & penyesuaian stok.</p>
-                        </div>
-                        <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-teal-600 text-white mt-4 self-end group-hover:scale-105 transition-transform shrink-0">
-                            &rarr;
-                        </span>
-                    </a>
-
-                    <a href="{{ route('kasir.billing') }}" class="group flex flex-col justify-between rounded-xl border border-amber-100 bg-amber-50/50 p-5 hover:bg-amber-50 hover:border-amber-200 transition-all shadow-xs">
-                        <div>
-                            <p class="font-bold text-amber-900">Kasir - Pembayaran</p>
-                            <p class="text-xs text-amber-700 mt-1">Penerimaan kuitansi pembayaran tindakan & obat.</p>
-                        </div>
-                        <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-amber-600 text-white mt-4 self-end group-hover:scale-105 transition-transform shrink-0">
-                            &rarr;
-                        </span>
-                    </a>
-
-                    <a href="{{ route('kasir.history') }}" class="group flex flex-col justify-between rounded-xl border border-amber-100 bg-amber-50/50 p-5 hover:bg-amber-50 hover:border-amber-200 transition-all shadow-xs">
-                        <div>
-                            <p class="font-bold text-amber-900">Kasir - Riwayat</p>
-                            <p class="text-xs text-amber-700 mt-1">Laporan harian pendapatan & cetak ulang invoice.</p>
-                        </div>
-                        <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-amber-600 text-white mt-4 self-end group-hover:scale-105 transition-transform shrink-0">
-                            &rarr;
-                        </span>
-                    </a>
-                </div>
-            </div>
         @endrole
 </div>
 </x-app-layout>
