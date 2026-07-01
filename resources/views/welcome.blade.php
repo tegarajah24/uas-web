@@ -336,7 +336,6 @@
                         <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-white text-xl font-bold shadow-lg ring-1 ring-white/20 transition-all duration-500 hover:bg-primary-hover hover:scale-110 hover:shadow-xl">
                             1
                         </div>
-                        <div class="absolute -bottom-1 -right-1 h-5 w-5 rounded-full bg-green-400 ring-2 ring-primary-700 animate-heartbeat"></div>
                     </div>
                     <div class="mt-6 rounded-xl bg-white/10 backdrop-blur-sm p-4 ring-1 ring-white/10">
                         <h4 class="font-semibold text-white">Pendaftaran</h4>

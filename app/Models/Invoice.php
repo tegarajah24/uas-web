@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Invoice extends Model
 {
-    protected $fillable = ['patient_id', 'medical_record_id', 'total', 'status', 'paid_at'];
+    protected $fillable = ['patient_id', 'medical_record_id', 'total', 'status', 'payment_method', 'paid_at'];
 
     protected function casts(): array
     {

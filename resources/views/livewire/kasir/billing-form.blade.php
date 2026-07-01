@@ -52,13 +52,32 @@
             <dialog id="bayar_{{ $record->id }}" class="fixed inset-0 z-50 bg-black/50 flex items-center justify-center" style="display: none;">
                 <div class="bg-white rounded-xl p-6 max-w-sm w-full mx-4 shadow-xl">
                     <h3 class="text-lg font-bold text-gray-900">Konfirmasi Pembayaran</h3>
-                    <p class="text-sm text-gray-600 mt-2">Proses pembayaran untuk pasien ini?</p>
+                    <p class="text-sm text-gray-600 mt-2">Pilih metode pembayaran untuk pasien <strong>{{ $record->patient->name }}</strong></p>
+                    <div class="mt-4 space-y-2">
+                        <label class="flex items-center gap-3 rounded-lg border border-gray-200 p-3 cursor-pointer hover:bg-gray-50 transition-colors has-[:checked]:border-primary has-[:checked]:bg-primary-50">
+                            <input type="radio" name="payment_{{ $record->id }}" value="tunai" class="text-primary accent-primary"
+                                   wire:model="paymentMethod" onclick="document.getElementById('payBtn_{{ $record->id }}').disabled = false">
+                            <span class="text-sm font-medium text-gray-900">Tunai</span>
+                        </label>
+                        <label class="flex items-center gap-3 rounded-lg border border-gray-200 p-3 cursor-pointer hover:bg-gray-50 transition-colors has-[:checked]:border-primary has-[:checked]:bg-primary-50">
+                            <input type="radio" name="payment_{{ $record->id }}" value="kartu_kredit" class="text-primary accent-primary"
+                                   wire:model="paymentMethod" onclick="document.getElementById('payBtn_{{ $record->id }}').disabled = false">
+                            <span class="text-sm font-medium text-gray-900">Kartu Kredit</span>
+                        </label>
+                        <label class="flex items-center gap-3 rounded-lg border border-gray-200 p-3 cursor-pointer hover:bg-gray-50 transition-colors has-[:checked]:border-primary has-[:checked]:bg-primary-50">
+                            <input type="radio" name="payment_{{ $record->id }}" value="qris" class="text-primary accent-primary"
+                                   wire:model="paymentMethod" onclick="document.getElementById('payBtn_{{ $record->id }}').disabled = false">
+                            <span class="text-sm font-medium text-gray-900">QRIS</span>
+                        </label>
+                    </div>
+                    @error('paymentMethod') <p class="mt-2 text-xs text-red-600">{{ $message }}</p> @enderror
                     <div class="flex justify-end gap-2 mt-6">
                         <button class="inline-flex items-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
                                 onclick="document.getElementById('bayar_{{ $record->id }}').close()">Batal</button>
-                        <button class="inline-flex items-center rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-primary-hover transition-colors"
+                        <button id="payBtn_{{ $record->id }}" disabled
+                                class="inline-flex items-center rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-primary-hover transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                                 wire:click="bayar"
-                                onclick="document.getElementById('bayar_{{ $record->id }}').close()">Ya, Bayar</button>
+                                onclick="document.getElementById('bayar_{{ $record->id }}').close()">Bayar</button>
                     </div>
                 </div>
             </dialog>

@@ -10,13 +10,20 @@ class BillingForm extends Component
 {
     public ?int $selectedRecordId = null;
 
+    public string $paymentMethod = '';
+
     public function selectRecord(int $id)
     {
         $this->selectedRecordId = $id;
+        $this->paymentMethod = '';
     }
 
     public function bayar()
     {
+        $this->validate([
+            'paymentMethod' => 'required|in:tunai,kartu_kredit,qris',
+        ]);
+
         $record = MedicalRecord::with('prescriptions.items')->findOrFail($this->selectedRecordId);
 
         $actionCost = $record->action_cost;
@@ -35,6 +42,7 @@ class BillingForm extends Component
             'medical_record_id' => $record->id,
             'total' => $total,
             'status' => 'paid',
+            'payment_method' => $this->paymentMethod,
             'paid_at' => now(),
         ]);
 
