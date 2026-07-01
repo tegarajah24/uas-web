@@ -449,33 +449,7 @@
         </div>
     </section>
 
-    {{-- FOOTER --}}
-    <footer class="relative border-t border-gray-200 bg-white/80 backdrop-blur-sm">
-        <div class="absolute inset-0 -z-10 medical-pattern-light"></div>
-        <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-            <div class="flex flex-col items-center justify-between gap-6 sm:flex-row">
-                <div class="flex items-center gap-2.5">
-                    <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary-600 text-white text-sm font-bold shadow-md">
-                        S
-                    </div>
-                    <span class="text-base font-semibold text-gray-700">SIMRS</span>
-                </div>
 
-                <div class="flex items-center gap-8">
-                    @auth
-                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-500 transition hover:text-primary">Dashboard</a>
-                    @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-500 transition hover:text-primary">Masuk</a>
-                        <a href="{{ route('register') }}" class="text-sm text-gray-500 transition hover:text-primary">Daftar</a>
-                    @endauth
-                </div>
-
-                <p class="text-sm text-gray-400">
-                    &copy; {{ date('Y') }} {{ config('app.name', 'SIMRS') }}. All rights reserved.
-                </p>
-            </div>
-        </div>
-    </footer>
 
     <script>
         // Smooth reveal on scroll for any elements not caught by Alpine init
