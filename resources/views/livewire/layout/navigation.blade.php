@@ -33,6 +33,17 @@ new class extends Component
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
                         {{ __('Dashboard') }}
                     </x-nav-link>
+
+                    @auth
+                        @role('admin_resepsionis')
+                            <x-nav-link :href="route('front-office.register')" :active="request()->routeIs('front-office.register')" wire:navigate>
+                                Pendaftaran
+                            </x-nav-link>
+                            <x-nav-link :href="route('front-office.queue')" :active="request()->routeIs('front-office.queue')" wire:navigate>
+                                Antrian
+                            </x-nav-link>
+                        @endrole
+                    @endauth
                 </div>
             </div>
 
@@ -84,6 +95,16 @@ new class extends Component
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            @auth
+                @role('admin_resepsionis')
+                    <x-responsive-nav-link :href="route('front-office.register')" :active="request()->routeIs('front-office.register')" wire:navigate>
+                        Pendaftaran
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('front-office.queue')" :active="request()->routeIs('front-office.queue')" wire:navigate>
+                        Antrian
+                    </x-responsive-nav-link>
+                @endrole
+            @endauth
         </div>
 
         <!-- Responsive Settings Options -->
