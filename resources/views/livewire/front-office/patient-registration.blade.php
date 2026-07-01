@@ -1,4 +1,4 @@
-<div class="max-w-3xl mx-auto space-y-6">
+<div class="max-w-6xl mx-auto space-y-6">
     <h2 class="text-2xl font-bold text-gray-900">Pendaftaran Pasien</h2>
 
     @if ($showSuccess)
@@ -18,28 +18,70 @@
         </div>
     @else
         <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-            <h3 class="text-lg font-semibold text-gray-900 mb-4">Cari Pasien</h3>
             <div class="flex gap-2">
                 <input type="text" class="block flex-1 rounded-lg border border-gray-300 px-3 py-2 text-sm placeholder-gray-400 focus:border-primary focus:ring-1 focus:ring-primary outline-none"
-                       placeholder="Cari No. RM atau NIK..." wire:model.live.debounce.500ms="searchQuery"
-                       wire:keydown.enter="searchPatient">
-                <button class="inline-flex items-center rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-primary-hover transition-colors" wire:click="searchPatient">
-                    Cari
-                </button>
-                <button class="inline-flex items-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors" wire:click="startNewRegistration">
-                    Baru
+                       placeholder="Cari No. RM, NIK, atau Nama..." wire:model.live.debounce.300ms="searchQuery">
+                <button class="inline-flex items-center rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-primary-hover transition-colors" wire:click="startNewRegistration">
+                    + Pasien Baru
                 </button>
             </div>
         </div>
 
+        <div class="overflow-x-auto rounded-xl border border-gray-200 bg-white shadow-sm">
+            <table class="min-w-full divide-y divide-gray-200 text-sm">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-4 py-3 text-left font-semibold text-gray-600">No. RM</th>
+                        <th class="px-4 py-3 text-left font-semibold text-gray-600">NIK</th>
+                        <th class="px-4 py-3 text-left font-semibold text-gray-600">Nama</th>
+                        <th class="px-4 py-3 text-left font-semibold text-gray-600">Tgl Lahir</th>
+                        <th class="px-4 py-3 text-left font-semibold text-gray-600">Gender</th>
+                        <th class="px-4 py-3 text-center font-semibold text-gray-600">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                    @forelse ($this->patients as $patient)
+                        <tr class="hover:bg-gray-50 transition-colors {{ $selectedPatient && $selectedPatient->id === $patient->id ? 'bg-primary-50' : '' }}">
+                            <td class="px-4 py-3 font-medium text-gray-900">{{ $patient->no_rm }}</td>
+                            <td class="px-4 py-3 text-gray-600">{{ $patient->nik }}</td>
+                            <td class="px-4 py-3 text-gray-900">{{ $patient->name }}</td>
+                            <td class="px-4 py-3 text-gray-600">{{ $patient->birth_date }}</td>
+                            <td class="px-4 py-3 text-gray-600">{{ $patient->gender === 'L' ? 'Laki-laki' : 'Perempuan' }}</td>
+                            <td class="px-4 py-3 text-center">
+                                <button class="inline-flex items-center rounded-lg bg-primary px-3 py-1.5 text-xs font-medium text-white hover:bg-primary-hover transition-colors"
+                                        wire:click="selectPatient({{ $patient->id }})">
+                                    Pilih
+                                </button>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="6" class="px-4 py-8 text-center text-gray-500">
+                                @if (strlen(trim($searchQuery)) >= 1)
+                                    Tidak ada pasien yang cocok dengan pencarian "{{ $searchQuery }}"
+                                @else
+                                    Belum ada data pasien. Klik <strong>+ Pasien Baru</strong> untuk mendaftarkan pasien pertama.
+                                @endif
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+            @if ($this->patients->hasPages())
+                <div class="border-t border-gray-200 px-4 py-3">
+                    {{ $this->patients->links() }}
+                </div>
+            @endif
+        </div>
+
         @if ($selectedPatient && !$showForm)
             <div class="rounded-xl border border-blue-200 bg-blue-50 p-6">
-                <h3 class="text-lg font-semibold text-blue-900 mb-3">Pasien Ditemukan</h3>
+                <h3 class="text-lg font-semibold text-blue-900 mb-3">Pasien Dipilih: {{ $selectedPatient->name }}</h3>
                 <div class="grid grid-cols-2 gap-2 text-sm">
                     <span class="font-medium text-gray-600">No. RM:</span><span class="text-gray-900">{{ $selectedPatient->no_rm }}</span>
-                    <span class="font-medium text-gray-600">Nama:</span><span class="text-gray-900">{{ $selectedPatient->name }}</span>
                     <span class="font-medium text-gray-600">NIK:</span><span class="text-gray-900">{{ $selectedPatient->nik }}</span>
                     <span class="font-medium text-gray-600">Tgl Lahir:</span><span class="text-gray-900">{{ $selectedPatient->birth_date }}</span>
+                    <span class="font-medium text-gray-600">Gender:</span><span class="text-gray-900">{{ $selectedPatient->gender === 'L' ? 'Laki-laki' : 'Perempuan' }}</span>
                 </div>
                 <hr class="border-t border-blue-200 my-4">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">

@@ -6,9 +6,13 @@ use App\Models\Patient;
 use App\Models\Queue;
 use App\Models\User;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class PatientRegistration extends Component
 {
+    use WithPagination;
+
+    protected $paginationTheme = 'tailwind';
     public string $searchQuery = '';
 
     public ?Patient $selectedPatient = null;
@@ -37,25 +41,29 @@ class PatientRegistration extends Component
 
     public function searchPatient()
     {
+    }
+
+    public function selectPatient(int $id)
+    {
+        $patient = Patient::findOrFail($id);
+        $this->selectedPatient = $patient;
+        $this->showForm = false;
+        $this->showSuccess = false;
+        $this->poli = '';
+        $this->doctorId = '';
+    }
+
+    public function getPatientsProperty()
+    {
         $query = trim($this->searchQuery);
-        if (strlen($query) < 3) {
-            return;
-        }
 
-        $patient = Patient::where('no_rm', $query)
-            ->orWhere('nik', $query)
-            ->first();
-
-        if ($patient) {
-            $this->selectedPatient = $patient;
-            $this->showForm = false;
-            $this->showSuccess = false;
-        } else {
-            $this->selectedPatient = null;
-            $this->showForm = true;
-            $this->showSuccess = false;
-            $this->fillFromSearchQuery($query);
-        }
+        return Patient::when(strlen($query) >= 1, function ($q) use ($query) {
+            $q->where('no_rm', 'like', "%{$query}%")
+              ->orWhere('nik', 'like', "%{$query}%")
+              ->orWhere('name', 'like', "%{$query}%");
+        })
+            ->latest()
+            ->paginate(10);
     }
 
     public function startNewRegistration()
