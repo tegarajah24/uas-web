@@ -43,6 +43,21 @@ new class extends Component
                                 Antrian
                             </x-nav-link>
                         @endrole
+                        @role('dokter')
+                            <x-nav-link :href="route('rme.dashboard')" :active="request()->routeIs('rme.*')" wire:navigate>
+                                RME
+                            </x-nav-link>
+                        @endrole
+                        @role('farmasi')
+                            <x-nav-link href="#" class="pointer-events-none opacity-50">
+                                Farmasi
+                            </x-nav-link>
+                        @endrole
+                        @role('kasir')
+                            <x-nav-link href="#" class="pointer-events-none opacity-50">
+                                Kasir
+                            </x-nav-link>
+                        @endrole
                     @endauth
                 </div>
             </div>
@@ -102,6 +117,11 @@ new class extends Component
                     </x-responsive-nav-link>
                     <x-responsive-nav-link :href="route('front-office.queue')" :active="request()->routeIs('front-office.queue')" wire:navigate>
                         Antrian
+                    </x-responsive-nav-link>
+                @endrole
+                @role('dokter')
+                    <x-responsive-nav-link :href="route('rme.dashboard')" :active="request()->routeIs('rme.*')" wire:navigate>
+                        RME
                     </x-responsive-nav-link>
                 @endrole
             @endauth
