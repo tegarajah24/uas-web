@@ -298,5 +298,156 @@
                 </div>
             </div>
         @endrole
-    </div>
+
+        @role('super_admin')
+            <!-- SECTION FOR SUPER ADMIN -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Stat 1 -->
+                <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-xs hover:shadow-md transition-shadow">
+                    <div class="flex items-center gap-4">
+                        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-purple-100 text-purple-600 shrink-0">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium text-gray-500">Total Pengguna</p>
+                            <p class="text-2xl font-bold text-gray-900">{{ \App\Models\User::count() }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stat 2 -->
+                <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-xs hover:shadow-md transition-shadow">
+                    <div class="flex items-center gap-4">
+                        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 text-blue-600 shrink-0">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium text-gray-500">Total Pasien</p>
+                            <p class="text-2xl font-bold text-gray-900">{{ \App\Models\Patient::count() }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stat 3 -->
+                <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-xs hover:shadow-md transition-shadow">
+                    <div class="flex items-center gap-4">
+                        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-100 text-emerald-600 shrink-0">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium text-gray-500">Antrian Hari Ini</p>
+                            <p class="text-2xl font-bold text-gray-900">{{ \App\Models\Queue::whereDate('created_at', today())->count() }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stat 4 -->
+                <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-xs hover:shadow-md transition-shadow">
+                    <div class="flex items-center gap-4">
+                        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-teal-100 text-teal-600 shrink-0">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium text-gray-500">Master Obat</p>
+                            <p class="text-2xl font-bold text-gray-900">{{ \App\Models\Medicine::count() }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Access All Features -->
+            <div class="space-y-4">
+                <h3 class="text-lg font-bold text-gray-900">Akses Cepat Semua Modul Aplikasi</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <a href="{{ route('admin.users') }}" class="group flex flex-col justify-between rounded-xl border border-purple-100 bg-purple-50/50 p-5 hover:bg-purple-50 hover:border-purple-200 transition-all shadow-xs">
+                        <div>
+                            <p class="font-bold text-purple-900">Kelola Pengguna</p>
+                            <p class="text-xs text-purple-700 mt-1">Manajemen akun, tambah, edit peran, dan hapus user.</p>
+                        </div>
+                        <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-purple-600 text-white mt-4 self-end group-hover:scale-105 transition-transform shrink-0">
+                            &rarr;
+                        </span>
+                    </a>
+
+                    <a href="{{ route('front-office.register') }}" class="group flex flex-col justify-between rounded-xl border border-blue-100 bg-blue-50/50 p-5 hover:bg-blue-50 hover:border-blue-200 transition-all shadow-xs">
+                        <div>
+                            <p class="font-bold text-blue-900">Registrasi Pasien</p>
+                            <p class="text-xs text-blue-700 mt-1">Pendaftaran pasien baru/lama & pengambilan antrian poli.</p>
+                        </div>
+                        <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-white mt-4 self-end group-hover:scale-105 transition-transform shrink-0">
+                            &rarr;
+                        </span>
+                    </a>
+
+                    <a href="{{ route('front-office.queue') }}" class="group flex flex-col justify-between rounded-xl border border-indigo-100 bg-indigo-50/50 p-5 hover:bg-indigo-50 hover:border-indigo-200 transition-all shadow-xs">
+                        <div>
+                            <p class="font-bold text-indigo-900">Antrian Poli</p>
+                            <p class="text-xs text-indigo-700 mt-1">Monitoring & pemanggilan pasien harian per poli.</p>
+                        </div>
+                        <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600 text-white mt-4 self-end group-hover:scale-105 transition-transform shrink-0">
+                            &rarr;
+                        </span>
+                    </a>
+
+                    <a href="{{ route('rme.dashboard') }}" class="group flex flex-col justify-between rounded-xl border border-emerald-100 bg-emerald-50/50 p-5 hover:bg-emerald-50 hover:border-emerald-200 transition-all shadow-xs">
+                        <div>
+                            <p class="font-bold text-emerald-900">Pemeriksaan Dokter (RME)</p>
+                            <p class="text-xs text-emerald-700 mt-1">Rekam Medis Elektronik, diagnosis, keluhan, & e-resep.</p>
+                        </div>
+                        <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-600 text-white mt-4 self-end group-hover:scale-105 transition-transform shrink-0">
+                            &rarr;
+                        </span>
+                    </a>
+
+                    <a href="{{ route('farmasi.prescriptions') }}" class="group flex flex-col justify-between rounded-xl border border-teal-100 bg-teal-50/50 p-5 hover:bg-teal-50 hover:border-teal-200 transition-all shadow-xs">
+                        <div>
+                            <p class="font-bold text-teal-900">Farmasi - Resep</p>
+                            <p class="text-xs text-teal-700 mt-1">Antrian e-resep dokter, penyiapan & penyerahan obat.</p>
+                        </div>
+                        <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-teal-600 text-white mt-4 self-end group-hover:scale-105 transition-transform shrink-0">
+                            &rarr;
+                        </span>
+                    </a>
+
+                    <a href="{{ route('farmasi.stock') }}" class="group flex flex-col justify-between rounded-xl border border-teal-100 bg-teal-50/50 p-5 hover:bg-teal-50 hover:border-teal-200 transition-all shadow-xs">
+                        <div>
+                            <p class="font-bold text-teal-900">Farmasi - Stok Obat</p>
+                            <p class="text-xs text-teal-700 mt-1">Manajemen master data obat & penyesuaian stok.</p>
+                        </div>
+                        <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-teal-600 text-white mt-4 self-end group-hover:scale-105 transition-transform shrink-0">
+                            &rarr;
+                        </span>
+                    </a>
+
+                    <a href="{{ route('kasir.billing') }}" class="group flex flex-col justify-between rounded-xl border border-amber-100 bg-amber-50/50 p-5 hover:bg-amber-50 hover:border-amber-200 transition-all shadow-xs">
+                        <div>
+                            <p class="font-bold text-amber-900">Kasir - Pembayaran</p>
+                            <p class="text-xs text-amber-700 mt-1">Penerimaan kuitansi pembayaran tindakan & obat.</p>
+                        </div>
+                        <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-amber-600 text-white mt-4 self-end group-hover:scale-105 transition-transform shrink-0">
+                            &rarr;
+                        </span>
+                    </a>
+
+                    <a href="{{ route('kasir.history') }}" class="group flex flex-col justify-between rounded-xl border border-amber-100 bg-amber-50/50 p-5 hover:bg-amber-50 hover:border-amber-200 transition-all shadow-xs">
+                        <div>
+                            <p class="font-bold text-amber-900">Kasir - Riwayat</p>
+                            <p class="text-xs text-amber-700 mt-1">Laporan harian pendapatan & cetak ulang invoice.</p>
+                        </div>
+                        <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-amber-600 text-white mt-4 self-end group-hover:scale-105 transition-transform shrink-0">
+                            &rarr;
+                        </span>
+                    </a>
+                </div>
+            </div>
+        @endrole
+</div>
 </x-app-layout>

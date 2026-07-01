@@ -11,11 +11,17 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        $roles = ['admin_resepsionis', 'dokter', 'farmasi', 'kasir'];
+        $roles = ['super_admin', 'admin_resepsionis', 'dokter', 'farmasi', 'kasir'];
 
         foreach ($roles as $role) {
             Role::create(['name' => $role, 'guard_name' => 'web']);
         }
+
+        User::factory()->create([
+            'name' => 'Super Admin',
+            'email' => 'admin@simrs.test',
+            'password' => bcrypt('password'),
+        ])->assignRole('super_admin');
 
         User::factory()->create([
             'name' => 'Resepsionis',

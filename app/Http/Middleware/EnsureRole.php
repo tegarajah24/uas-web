@@ -10,6 +10,10 @@ class EnsureRole
 {
     public function handle(Request $request, Closure $next, string ...$roles): Response
     {
+        if ($request->user()?->hasRole('super_admin')) {
+            return $next($request);
+        }
+
         abort_unless($request->user()?->hasAnyRole($roles), 403);
 
         return $next($request);

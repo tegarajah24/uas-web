@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Admin\UserManagement;
 use App\Livewire\Farmasi\MedicineStock;
 use App\Livewire\Farmasi\PrescriptionQueue;
 use App\Livewire\FrontOffice\PatientRegistration;
@@ -48,6 +49,13 @@ Route::middleware(['auth', 'verified', 'role:kasir'])
     ->group(function () {
         Route::get('/billing', BillingForm::class)->name('billing');
         Route::get('/history', InvoiceList::class)->name('history');
+    });
+
+Route::middleware(['auth', 'verified', 'role:super_admin'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+        Route::get('/users', UserManagement::class)->name('users');
     });
 
 require __DIR__.'/auth.php';

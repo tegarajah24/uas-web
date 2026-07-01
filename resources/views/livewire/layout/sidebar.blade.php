@@ -17,7 +17,7 @@
         </a>
 
         @auth
-            @role('admin_resepsionis')
+            @hasanyrole('admin_resepsionis|super_admin')
                 <div class="pt-4 pb-1">
                     <p class="px-3 text-xs font-semibold uppercase tracking-wider text-sidebar-text">Front-Office</p>
                 </div>
@@ -39,7 +39,7 @@
                 </a>
             @endrole
 
-            @role('dokter')
+            @hasanyrole('dokter|super_admin')
                 <div class="pt-4 pb-1">
                     <p class="px-3 text-xs font-semibold uppercase tracking-wider text-sidebar-text">RME</p>
                 </div>
@@ -53,7 +53,7 @@
                 </a>
             @endrole
 
-            @role('farmasi')
+            @hasanyrole('farmasi|super_admin')
                 <div class="pt-4 pb-1">
                     <p class="px-3 text-xs font-semibold uppercase tracking-wider text-sidebar-text">Farmasi</p>
                 </div>
@@ -75,7 +75,7 @@
                 </a>
             @endrole
 
-            @role('kasir')
+            @hasanyrole('kasir|super_admin')
                 <div class="pt-4 pb-1">
                     <p class="px-3 text-xs font-semibold uppercase tracking-wider text-sidebar-text">Kasir</p>
                 </div>
@@ -94,6 +94,20 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
                     Riwayat
+                </a>
+            @endrole
+
+            @role('super_admin')
+                <div class="pt-4 pb-1">
+                    <p class="px-3 text-xs font-semibold uppercase tracking-wider text-sidebar-text">Super Admin</p>
+                </div>
+                <a href="{{ route('admin.users') }}" wire:navigate
+                   class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors
+                          {{ request()->routeIs('admin.users') ? 'bg-primary text-white' : 'text-sidebar-text hover:bg-sidebar-hover hover:text-white' }}">
+                    <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                    Kelola Pengguna
                 </a>
             @endrole
         @endauth
