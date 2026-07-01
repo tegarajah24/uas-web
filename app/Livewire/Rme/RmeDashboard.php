@@ -26,18 +26,36 @@ class RmeDashboard extends Component
 
     public array $prescriptionItems = [];
 
-    public bool $showForm = false;
+    public bool $showModal = false;
+
+    public string $step = 'examination';
 
     public function selectQueue(int $queueId)
     {
         $this->selectedQueueId = $queueId;
         $this->savedMedicalRecordId = null;
-        $this->showForm = true;
+        $this->showModal = true;
+        $this->step = 'examination';
         $this->complaint = '';
         $this->diagnosis = '';
         $this->actionCost = '0';
         $this->prescriptionItems = [];
         $this->selectedMedicineId = '';
+        $this->medicineQty = 1;
+    }
+
+    public function closeModal()
+    {
+        $this->selectedQueueId = null;
+        $this->savedMedicalRecordId = null;
+        $this->showModal = false;
+        $this->step = 'examination';
+        $this->complaint = '';
+        $this->diagnosis = '';
+        $this->actionCost = '0';
+        $this->prescriptionItems = [];
+        $this->selectedMedicineId = '';
+        $this->medicineQty = 1;
     }
 
     public function saveMedicalRecord()
@@ -60,6 +78,7 @@ class RmeDashboard extends Component
         ]);
 
         $this->savedMedicalRecordId = $record->id;
+        $this->step = 'prescription';
 
         $this->dispatch('medical-record-saved');
     }
@@ -119,7 +138,7 @@ class RmeDashboard extends Component
 
         Queue::where('id', $this->selectedQueueId)->update(['status' => 'done']);
 
-        $this->resetRecordForm();
+        $this->closeModal();
 
         $this->dispatch('prescription-saved');
     }
@@ -134,21 +153,9 @@ class RmeDashboard extends Component
 
         Queue::where('id', $this->selectedQueueId)->update(['status' => 'done']);
 
-        $this->resetRecordForm();
+        $this->closeModal();
 
         $this->dispatch('prescription-saved');
-    }
-
-    private function resetRecordForm()
-    {
-        $this->selectedQueueId = null;
-        $this->savedMedicalRecordId = null;
-        $this->showForm = false;
-        $this->complaint = '';
-        $this->diagnosis = '';
-        $this->actionCost = '0';
-        $this->prescriptionItems = [];
-        $this->selectedMedicineId = '';
     }
 
     public function getSelectedQueueProperty()
