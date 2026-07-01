@@ -26,12 +26,12 @@
                             </span>
                         </td>
                         <td class="px-4 py-3 text-center">
-                            <button class="inline-flex items-center justify-center rounded-lg bg-primary px-3 py-1.5 text-xs font-medium text-white hover:bg-primary-hover transition-colors min-w-[4rem] h-[30px]"
+                            <button class="relative inline-flex items-center justify-center rounded-lg bg-primary px-3 py-1.5 text-xs font-medium text-white hover:bg-primary-hover transition-colors min-w-[4rem] h-[30px]"
                                     wire:click="selectQueue({{ $queue->id }})"
                                     wire:loading.attr="disabled"
                                     wire:target="selectQueue">
                                 <span wire:loading.class="invisible" wire:target="selectQueue">Lihat</span>
-                                <span wire:loading.class.remove="hidden" class="hidden items-center justify-center"
+                                <span wire:loading.class.remove="hidden" class="hidden absolute inset-0 flex items-center justify-center"
                                       wire:target="selectQueue">
                                     <svg class="h-3.5 w-3.5 animate-spin" fill="none" viewBox="0 0 24 24">
                                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>

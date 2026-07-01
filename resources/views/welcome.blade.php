@@ -104,18 +104,12 @@
     </style>
 </head>
 <body class="font-sans antialiased" x-data="{ scrolled: 0 }" @scroll.window="scrolled = window.scrollY">
-    {{-- PARALLAX DECORATIVE LAYER --}}
+    {{-- DECORATIVE LAYER --}}
     <div class="fixed inset-0 -z-20 overflow-hidden pointer-events-none">
         <div class="absolute inset-0 medical-pattern"></div>
-        <div class="absolute top-1/4 left-1/6 w-96 h-96 rounded-full bg-primary/5 blur-[120px]"
-             :style="{ transform: 'translateY(' + (scrolled * 0.15) + 'px)' }">
-        </div>
-        <div class="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full bg-primary-100/30 blur-[100px]"
-             :style="{ transform: 'translateY(' + (scrolled * -0.1) + 'px)' }">
-        </div>
-        <div class="absolute top-2/3 left-1/3 w-64 h-64 rounded-full bg-primary/5 blur-[80px]"
-             :style="{ transform: 'translateY(' + (scrolled * 0.08) + 'px)' }">
-        </div>
+        <div class="absolute top-1/4 left-1/6 w-96 h-96 rounded-full bg-primary/5 blur-[120px]"></div>
+        <div class="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full bg-primary-100/30 blur-[100px]"></div>
+        <div class="absolute top-2/3 left-1/3 w-64 h-64 rounded-full bg-primary/5 blur-[80px]"></div>
     </div>
 
     {{-- NAVBAR --}}
@@ -149,11 +143,6 @@
             <div class="absolute top-20 -left-20 w-[500px] h-[500px] rounded-full bg-primary/20 blur-[150px] animate-pulse-soft"></div>
             <div class="absolute bottom-20 -right-20 w-[400px] h-[400px] rounded-full bg-teal-400/15 blur-[120px] animate-float-slow"></div>
             <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/10 blur-[180px]"></div>
-
-            {{-- Hero Parallax Elements --}}
-            <div class="absolute inset-0"
-                 :style="{ transform: 'translateY(' + (scrolled * 0.4) + 'px) scale(' + (1 - scrolled * 0.0008) + ')', opacity: Math.max(0, 1 - scrolled * 0.003) }">
-            </div>
         </div>
 
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full relative z-10 pt-32 pb-20">
@@ -319,16 +308,15 @@
         </div>
     </section>
 
-    {{-- ALUR + PARALLAX --}}
+    {{-- ALUR --}}
     <section class="relative py-28 overflow-hidden"
              x-init="$el.querySelectorAll('.reveal').forEach(el => {
                  new IntersectionObserver(entries => {
                      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible') });
                  }, { threshold: 0.2 }).observe(el);
              })">
-        {{-- Parallax Background Layer --}}
-        <div class="absolute inset-0 -z-10"
-             :style="{ transform: 'translateY(' + (scrolled * 0.1) + 'px)' }">
+        {{-- Background Layer --}}
+        <div class="absolute inset-0 -z-10">
             <div class="absolute inset-0 bg-gradient-to-br from-primary-700 via-primary to-primary-600"></div>
             <div class="absolute inset-0 medical-pattern opacity-10"></div>
             <div class="absolute top-10 -left-20 w-[400px] h-[400px] rounded-full bg-white/5 blur-[120px]"></div>
